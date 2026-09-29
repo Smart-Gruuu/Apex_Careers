@@ -1,0 +1,770 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Careers | Everforth Apex</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@200;300;400;500;600;700&family=Lusitana:wght@400;700&display=swap" rel="stylesheet">
+<link rel="icon" href="https://www.apexsystems.com/profiles/apex/themes/apex_bootstrap/favicon.ico" type="image/vnd.microsoft.icon">
+<style>
+  :root {
+    --slate: #44546a;
+    --slate-dark: #34414f;
+    --mint: #9fe2d8;
+    --grey-text: #737373;
+    --ink: #212529;
+    --canvas: #f9f9f9;
+    --white: #ffffff;
+    --rule: #dee2e6;
+    --link: #0056b3;
+    --notice-bg: #ffd84d;
+    --notice-ink: #3b2f00;
+    --sans: "Libre Franklin", Arial, sans-serif;
+    --serif: "Lusitana", Georgia, serif;
+    --bar-h: 52px;
+    --head-h: 100px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--canvas);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  main { overflow-x: clip; }
+  img { display: block; max-width: 100%; }
+  a { color: var(--link); }
+  .container { max-width: 1250px; margin: 0 auto; padding: 0 15px; }
+
+  /* ================= Fixed top: notice bar + header ================= */
+  .site-top { position: fixed; top: 0; left: 0; right: 0; z-index: 100; }
+
+  .notice-bar {
+    height: var(--bar-h);
+    background: var(--notice-bg);
+    color: var(--notice-ink);
+    border-bottom: 1px solid #e3b900;
+  }
+  .notice-bar .container {
+    height: 100%;
+    display: flex; align-items: center; justify-content: center; gap: 18px;
+  }
+  .notice-bar svg { width: 22px; height: 22px; flex: none; }
+  .notice-bar p { margin: 0; font-size: 17px; font-weight: 500; }
+  .notice-bar a {
+    flex: none;
+    background: var(--notice-ink); color: var(--notice-bg);
+    font-weight: 700; font-size: 14px; letter-spacing: .06em; text-transform: uppercase;
+    text-decoration: none; padding: 8px 18px;
+  }
+  .notice-bar a:hover { background: #000; }
+
+  header.site {
+    height: var(--head-h);
+    background: transparent;
+    transition: background-color .25s ease, box-shadow .25s ease;
+  }
+  header.site .container { height: 100%; display: flex; align-items: center; justify-content: space-between; }
+  .site-top.solid header.site { background: var(--white); box-shadow: 0 2px 12px rgba(0,0,0,.08); }
+
+  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--white); transition: color .25s ease; }
+  .brand svg { width: 54px; height: 32px; flex: none; }
+  .brand .name { line-height: 1.02; }
+  .brand .name b { display: block; font-size: 25px; font-weight: 500; letter-spacing: -.01em; }
+  .brand .name i { display: block; font-style: normal; font-size: 17px; font-weight: 400; opacity: .9; }
+  .site-top.solid .brand { color: var(--slate); }
+
+  /* Logo swap: white logo over the hero, color logo once scrolled */
+  .brand .logo-blk { transition: opacity .25s ease; }
+  #white-logo-blk { display: block; }
+  #color-logo-blk { display: none; }
+  .site-top.solid #white-logo-blk { display: none; }
+  .site-top.solid #color-logo-blk { display: block; }
+
+  nav.main { display: flex; align-items: center; gap: 38px; }
+  nav.main a {
+    position: relative;
+    color: var(--white); text-decoration: none;
+    font-size: 16px; font-weight: 500; letter-spacing: .85px; text-transform: uppercase;
+    padding: 28px 0; line-height: 24px;
+    transition: color .25s ease;
+  }
+  nav.main a::after {
+    content: ""; position: absolute; left: 0; right: 0; top: 64px; height: 6px;
+    background: var(--mint); transform: scaleX(0); transition: transform .2s ease;
+  }
+  nav.main a:hover::after, nav.main a.active::after { transform: scaleX(1); }
+  nav.main a.myapex { border: 1.6px solid var(--mint); padding: 7px 12px; }
+  nav.main a.myapex::after { display: none; }
+  nav.main a.search { padding: 6px 0; }
+  nav.main a.search::after { display: none; }
+  nav.main a.search svg { width: 22px; height: 22px; display: block; }
+  .site-top.solid nav.main a { color: var(--slate); }
+
+  .burger { display: none; background: none; border: 0; padding: 6px; cursor: pointer; color: var(--white); }
+  .burger svg { width: 30px; height: 30px; display: block; }
+  .site-top.solid .burger { color: var(--slate); }
+
+  /* ================= Hero ================= */
+  .hero {
+    position: relative;
+    height: 693px;
+    background: #434343 url("https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=2000&q=70") center 35% / cover no-repeat;
+    display: flex; align-items: center;
+    padding-top: calc(var(--bar-h) + var(--head-h) - 40px);
+  }
+  .hero::before {
+    content: ""; position: absolute; inset: 0;
+    background:
+      linear-gradient(180deg, rgba(40,52,66,.55) 0%, rgba(40,52,66,0) 28%),
+      linear-gradient(90deg, rgba(104,128,150,.88) 0%, rgba(104,128,150,.6) 38%, rgba(104,128,150,.08) 72%);
+  }
+  .hero .container { position: relative; width: 100%; }
+  .hero .kicker { color: var(--white); font-size: 22px; font-weight: 500; margin: 0 0 22px; }
+  .hero h1 { color: var(--white); font-family: var(--serif); font-weight: 400; font-size: 69px; line-height: 1.2; margin: 0; }
+
+  /* ================= Scam notice (mint) ================= */
+  .message-banner {
+    position: relative;
+    margin-top: 40px;
+    background: var(--mint); color: var(--slate);
+    border-radius: 40px; padding: 20px 80px;
+    font-size: 22px; line-height: 33px; text-align: center;
+  }
+  .message-banner a { color: var(--link); }
+  .message-banner .close {
+    position: absolute; right: 26px; top: 50%; transform: translateY(-50%);
+    background: none; border: 0; cursor: pointer; color: var(--slate);
+    font: 700 26px/1 var(--sans); padding: 4px 10px;
+  }
+
+  /* ================= Lead text ================= */
+  .lead {
+    max-width: 784px; margin: 70px auto 60px;
+    text-align: center; color: var(--slate);
+    font-size: 22px; font-weight: 600; line-height: 33px;
+  }
+
+  /* ================= Mint arrow button (site CTA) ================= */
+  .arrow-btn {
+    position: relative; display: inline-flex; align-items: center;
+    color: var(--slate); text-decoration: none;
+    font-size: 16px; font-weight: 500; text-transform: uppercase; line-height: 25.6px;
+  }
+  .arrow-btn .circle {
+    width: 34px; height: 34px; border-radius: 26px; background: var(--mint);
+    display: grid; place-items: center; flex: none;
+    transition: transform .2s ease;
+  }
+  .arrow-btn .circle svg { width: 20px; height: 12px; }
+  .arrow-btn .button-text { padding: 4px 34px 4px 15px; position: relative; }
+  .arrow-btn .button-text::after {
+    content: ""; position: absolute; left: 15px; right: 34px; bottom: -6px; height: 6px;
+    background: var(--mint); transform: scaleX(0); transform-origin: left; transition: transform .2s ease;
+  }
+  .arrow-btn:hover .button-text::after { transform: scaleX(1); }
+  .arrow-btn:hover .circle { transform: translateX(3px); }
+
+  /* ================= Two stacked cards ================= */
+  .stacked { display: grid; grid-template-columns: 1fr 1fr; }
+  .stacked-content { padding: 20px; display: flex; flex-direction: column; }
+  .image-top { height: 321px; overflow: hidden; }
+  .image-top img { width: 100%; height: 100%; object-fit: cover; }
+  .content-top { background: var(--white); padding: 60px; flex: 1; display: flex; flex-direction: column; }
+  .content-top h2 { color: var(--slate); font-size: 38px; font-weight: 500; line-height: 45.6px; margin: 0 0 16px; }
+  .content-top p { color: var(--grey-text); font-size: 22px; line-height: 39.6px; margin: 0 0 40px; flex: 1; }
+
+  /* ================= Generic section heads ================= */
+  .section { padding: 90px 0 0; }
+  .section-head { text-align: center; max-width: 900px; margin: 0 auto 40px; }
+  .three-lines { width: 38px; height: 38px; margin: 0 auto 14px; display: block; }
+  .section-head h2 { color: var(--slate); font-size: 38px; font-weight: 500; line-height: 45.6px; margin: 0 0 14px; }
+  .section-head p { color: var(--grey-text); font-size: 22px; line-height: 36px; margin: 0; }
+
+  /* ================= Job openings ================= */
+  .search-band {
+    background: linear-gradient(90deg, rgba(68,84,106,.96), rgba(68,84,106,.86)),
+                url("https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=60") center / cover;
+    padding: 34px 40px;
+    display: grid; grid-template-columns: 1.4fr 1fr 1fr auto; gap: 16px; align-items: end;
+  }
+  .search-band label { display: block; color: var(--white); font-size: 15px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 8px; }
+  .field-wrap { position: relative; }
+  .field-wrap svg { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; color: var(--slate); pointer-events: none; }
+  .search-band input, .search-band select {
+    width: 100%; height: 48px; border: 0; border-radius: 0;
+    background: var(--white); color: var(--slate);
+    font: 300 19px var(--sans); padding: 0 16px 0 50px;
+    appearance: none; -webkit-appearance: none;
+  }
+  .search-band select {
+    background-image: linear-gradient(45deg, transparent 50%, var(--slate) 50%), linear-gradient(135deg, var(--slate) 50%, transparent 50%);
+    background-position: calc(100% - 22px) 21px, calc(100% - 16px) 21px;
+    background-size: 6px 6px; background-repeat: no-repeat;
+  }
+  .search-band input:focus, .search-band select:focus { outline: 3px solid var(--mint); outline-offset: 0; }
+  .search-band .clear {
+    height: 48px; padding: 0 26px; border: 0; cursor: pointer;
+    background: var(--mint); color: var(--slate-dark);
+    font: 700 15px var(--sans); letter-spacing: .08em; text-transform: uppercase;
+  }
+  .search-band .clear:hover { background: #b8ebe3; }
+
+  .results-wrap { background: var(--white); padding: 34px 40px 40px; }
+  .results-wrap h3 { color: var(--slate); font-size: 28px; font-weight: 500; margin: 0 0 6px; }
+  .results-meta { color: var(--grey-text); font-size: 16px; margin: 0 0 18px; }
+  table.results { width: 100%; border-collapse: collapse; font-size: 20px; }
+  table.results th {
+    text-align: left; font-weight: 700; color: var(--ink); white-space: nowrap;
+    padding: 12px; border-top: 1px solid var(--rule); border-bottom: 2px solid var(--rule);
+  }
+  table.results td { padding: 12px; border-top: 1px solid var(--rule); vertical-align: middle; color: var(--ink); }
+  table.results tbody tr:nth-of-type(odd) { background: rgba(0,0,0,.05); }
+  table.results td.title a { color: var(--slate); font-weight: 700; text-decoration: none; }
+  table.results td.title a:hover { text-decoration: underline; }
+  table.results td.more { text-align: right; white-space: nowrap; }
+  table.results td.more a {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--slate); text-decoration: none; font-size: 15px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em;
+  }
+  table.results td.more a span.dot { width: 26px; height: 26px; border-radius: 50%; background: var(--mint); display: grid; place-items: center; transition: transform .2s ease; }
+  table.results td.more a span.dot svg { width: 14px; height: 9px; }
+  table.results td.more a:hover span.dot { transform: translateX(3px); }
+  table.results td.date { white-space: nowrap; }
+  table.results td.date .ago { display: block; font-size: 14px; color: var(--grey-text); }
+  .stale {
+    display: none; margin: 0 0 18px; padding: 14px 18px;
+    background: #fff8d6; border-left: 4px solid #e3b900; color: #3b2f00; font-size: 16px;
+  }
+  .stale a { color: var(--link); font-weight: 600; }
+  .empty { display: none; text-align: center; color: var(--grey-text); font-size: 18px; padding: 30px 0 6px; }
+  .results-foot { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; margin-top: 28px; }
+  .pager { display: flex; gap: 6px; }
+  .pager a, .pager span {
+    width: 40px; height: 36px; display: grid; place-items: center;
+    background: var(--mint); color: var(--white); text-decoration: none; font-size: 20px;
+  }
+  .pager span.current { background: var(--slate); }
+
+  /* ================= Benefits ================= */
+  .benefits { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+  .benefit { background: var(--white); padding: 50px 44px; }
+  .benefit h3 { color: var(--slate); font-size: 28px; font-weight: 500; line-height: 34px; margin: 0 0 22px; }
+  .benefit ul { list-style: none; margin: 0; padding: 0; }
+  .benefit li { color: var(--grey-text); font-size: 19px; line-height: 28px; padding: 9px 0 9px 26px; position: relative; }
+  .benefit li::before { content: ""; position: absolute; left: 0; top: 19px; width: 12px; height: 3px; border-radius: 2px; background: var(--mint); }
+
+  /* ================= Resources ================= */
+  .resources { background: var(--white); padding: 50px 60px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px 40px; }
+
+  /* ================= Testimonial ================= */
+  .testimonial-section { position: relative; margin: 90px 0 70px; padding: 100px 0; text-align: center; }
+  .testimonial-section::before { content: ""; position: absolute; top: 0; bottom: 0; left: 50%; width: 100vw; transform: translateX(-50%); background: rgba(165,165,167,.05); }
+  .testimonial { position: relative; max-width: 900px; margin: 0 auto; }
+  .testimonial-heading { color: var(--slate); font-size: 22px; font-weight: 500; line-height: 33px; margin: 0 0 45px; }
+  .testimonial blockquote { margin: 0; color: var(--slate); font-size: 28px; font-weight: 200; line-height: 56px; }
+  .testimonial .attribution { margin-top: 40px; color: var(--slate); font-size: 22px; font-weight: 300; line-height: 33px; }
+  .testimonial .attribution .three-lines { margin-bottom: 15px; }
+
+  /* ================= Full-width promo ================= */
+  .promo { position: relative; display: block; height: 523px; overflow: hidden; text-decoration: none; }
+  .promo img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; transition: transform .6s ease; }
+  .promo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(34,44,56,.72) 0%, rgba(34,44,56,.15) 55%, rgba(34,44,56,0) 100%); }
+  .promo:hover img { transform: scale(1.03); }
+  .promo-content { position: absolute; left: 76px; bottom: 42px; z-index: 1; color: var(--white); }
+  .promo-headline { font-family: var(--serif); font-size: 49px; line-height: 64px; }
+  .promo-headline .attention { color: var(--mint); }
+  .promo-sub { font-size: 18px; margin-top: 6px; color: #e8eef2; }
+
+  /* ================= Footer ================= */
+  footer.site { background: var(--white); margin-top: 90px; padding: 70px 0 50px; }
+  .footer-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 60px; }
+  .footer-brand { display: flex; align-items: center; gap: 12px; color: var(--slate); text-decoration: none; margin-bottom: 22px; }
+  .footer-brand svg { width: 54px; height: 32px; }
+  .footer-brand .name { line-height: 1.02; }
+  .footer-brand .name b { display: block; font-size: 25px; font-weight: 500; }
+  .footer-brand .name i { display: block; font-style: normal; font-size: 17px; }
+  .fine { color: var(--grey-text); font-size: 15px; margin: 0 0 6px; }
+  .fine.slate { color: var(--slate); font-size: 14px; }
+  .footer-grid h4 { color: var(--grey-text); font-size: 22px; font-weight: 700; margin: 32px 0 12px; }
+  .footer-grid address { font-style: normal; color: var(--grey-text); font-size: 22px; line-height: 33px; }
+  .social { display: flex; gap: 16px; margin-top: 30px; }
+  .social a { color: var(--slate); }
+  .social svg { width: 22px; height: 22px; display: block; }
+  .social a:hover { color: var(--mint); }
+  .footer-menus { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+  .footer-menus h5 { color: var(--slate); font-size: 16px; font-weight: 700; letter-spacing: .1em; margin: 0 0 16px; }
+  .footer-menus a { display: block; color: var(--slate); text-decoration: none; font-size: 17px; padding: 6px 0; }
+  .footer-menus a:hover { text-decoration: underline; }
+  .eeo { border-top: 1px solid var(--rule); margin-top: 50px; padding-top: 28px; color: var(--grey-text); font-size: 14px; line-height: 1.65; }
+  .eeo .credit { margin-top: 12px; font-size: 13px; }
+
+  /* ================= Responsive ================= */
+  @media (max-width: 1199px) {
+    nav.main { gap: 24px; }
+    nav.main a { font-size: 14px; letter-spacing: .6px; }
+    .content-top { padding: 44px; }
+  }
+  @media (max-width: 991px) {
+    :root { --head-h: 80px; }
+    .burger { display: block; }
+    nav.main {
+      display: none; position: absolute; left: 0; right: 0; top: calc(var(--bar-h) + var(--head-h));
+      flex-direction: column; align-items: stretch; gap: 0;
+      background: var(--white); padding: 6px 20px 20px; box-shadow: 0 10px 20px rgba(0,0,0,.08);
+    }
+    nav.main.open { display: flex; }
+    nav.main a { color: var(--slate); padding: 15px 0; border-bottom: 1px solid var(--rule); font-size: 15px; }
+    nav.main a::after { display: none; }
+    nav.main a.active { font-weight: 700; }
+    nav.main a.myapex { margin-top: 14px; text-align: center; border-bottom: 1.6px solid var(--mint); }
+    nav.main a.search { display: none; }
+    .stacked, .benefits { grid-template-columns: 1fr; }
+    .stacked-content { padding: 20px 0; }
+    .benefits { gap: 24px; }
+    .search-band { grid-template-columns: 1fr 1fr; }
+    .search-band .kw { grid-column: 1 / -1; }
+    .search-band .clear { grid-column: 1 / -1; }
+    .resources { grid-template-columns: 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+  @media (max-width: 767px) {
+    :root { --bar-h: 92px; --head-h: 70px; }
+    .container { padding: 0 16px; }
+    .notice-bar .container { flex-direction: column; gap: 8px; justify-content: center; }
+    .notice-bar .msg { display: flex; align-items: center; gap: 10px; }
+    .notice-bar p { font-size: 15px; }
+    .notice-bar a { padding: 7px 16px; font-size: 13px; }
+    .brand svg { width: 44px; height: 26px; }
+    .brand .name b { font-size: 20px; }
+    .brand .name i { font-size: 14px; }
+    .hero { height: 520px; background-position: 62% center; }
+    .hero::before { background: linear-gradient(180deg, rgba(40,52,66,.6) 0%, rgba(104,128,150,.55) 45%, rgba(104,128,150,.8) 100%); }
+    .hero .kicker { font-size: 18px; margin-bottom: 14px; }
+    .hero h1 { font-size: 52px; }
+    .message-banner { font-size: 17px; line-height: 26px; padding: 18px 44px 18px 22px; border-radius: 26px; text-align: left; }
+    .message-banner .close { right: 10px; top: 16px; transform: none; }
+    .lead { font-size: 19px; line-height: 30px; margin: 46px auto 30px; }
+    .image-top { height: 220px; }
+    .content-top { padding: 32px 24px 36px; }
+    .content-top h2, .section-head h2 { font-size: 30px; line-height: 38px; }
+    .content-top p, .section-head p { font-size: 18px; line-height: 30px; }
+    .section { padding-top: 64px; }
+    .search-band { grid-template-columns: 1fr; padding: 24px 18px; }
+    .results-wrap { padding: 24px 18px 28px; }
+    table.results thead { display: none; }
+    table.results, table.results tbody, table.results tr, table.results td { display: block; width: 100%; }
+    table.results tr { padding: 14px 10px; border-top: 1px solid var(--rule); }
+    table.results td { border: 0; padding: 2px 0; font-size: 17px; }
+    table.results td.title { font-size: 18px; margin-bottom: 4px; }
+    table.results td.city, table.results td.state { display: inline; color: var(--grey-text); }
+    table.results td.state::before { content: ", "; }
+    table.results td.date { color: var(--grey-text); }
+    table.results td.date::before { content: "Posted "; }
+    table.results td.date .ago { display: inline; font-size: inherit; }
+    table.results td.date .ago::before { content: " · "; }
+    table.results td.more { text-align: left; margin-top: 8px; }
+    .benefit { padding: 34px 24px; }
+    .resources { grid-template-columns: 1fr; padding: 32px 24px; }
+    .testimonial-section { margin: 60px 0 40px; padding: 60px 0; }
+    .testimonial blockquote { font-size: 23px; line-height: 40px; }
+    .promo { height: 360px; }
+    .promo-content { left: 22px; bottom: 26px; right: 22px; }
+    .promo-headline { font-size: 38px; line-height: 48px; }
+    .footer-menus { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="arrow" viewBox="0 0 20 12"><path d="M1 6h17M13 1l5 5-5 5" fill="none" stroke="#44546a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="lines" viewBox="0 0 44 44"><g transform="rotate(45 22 22)" stroke="#9fe2d8" stroke-width="3" stroke-linecap="round"><path d="M12 5v34M22 5v34M32 5v34"/></g></symbol>
+    <symbol id="mark" viewBox="0 0 54 32"><path d="M10 0h44l-6 8H4zM6 12h36l-6 8H0zM14 24h22l-6 8H8z" fill="currentColor"/></symbol>
+  </defs>
+</svg>
+
+<!-- ================= Fixed top ================= -->
+<div class="site-top" id="siteTop">
+  <div class="notice-bar" role="alert">
+    <div class="container">
+      <div class="msg" style="display:flex;align-items:center;gap:12px">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 20.5h20L12 3Z" fill="#3b2f00"/><path d="M12 9.5v5" stroke="#ffd84d" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.25" fill="#ffd84d"/></svg>
+        <p>Please go to the current Everforth Apex careers page.</p>
+      </div>
+      <a href="https://www.apexsystems.com/careers" target="_blank" rel="noopener">Go to Page</a>
+    </div>
+  </div>
+
+  <header class="site">
+    <div class="container">
+      <a class="brand" href="https://www.apexsystems.com/" target="_blank" rel="noopener" aria-label="Everforth Apex Systems">
+        <img alt="Everforth Apex logo" class="logo-blk" id="white-logo-blk" src="https://www.apexsystems.com/profiles/apex/themes/apex_bootstrap/images/Apex_logo_horizontal_white.png" width="215">
+        <img alt="Everforth Apex logo" class="logo-blk" id="color-logo-blk" src="https://www.apexsystems.com/profiles/apex/themes/apex_bootstrap/images/Apex_logo_horizontal_color.png" width="215">
+      </a>
+      <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mainnav">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <nav class="main" id="mainnav" aria-label="Main">
+        <a href="https://www.apexsystems.com/what-we-do" target="_blank" rel="noopener">What We Do</a>
+        <a href="https://www.apexsystems.com/industries" target="_blank" rel="noopener">Industries</a>
+        <a href="https://www.apexsystems.com/insights" target="_blank" rel="noopener">Insights</a>
+        <a href="https://www.apexsystems.com/about-apex" target="_blank" rel="noopener">About Everforth Apex</a>
+        <a class="active" href="https://www.apexsystems.com/careers" target="_blank" rel="noopener">Careers</a>
+        <a class="myapex" href="https://www.apexsystems.com/myapex" target="_blank" rel="noopener">My Apex</a>
+        <a class="search" href="https://www.apexsystems.com/search-results-usa" target="_blank" rel="noopener" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="2"/><path d="m15.5 15.5 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </a>
+      </nav>
+    </div>
+  </header>
+</div>
+
+<!-- ================= Hero ================= -->
+<section class="hero">
+  <div class="container">
+    <p class="kicker">The Heart of Everforth Apex is Our People</p>
+    <h1>Careers</h1>
+  </div>
+</section>
+
+<main>
+  <div class="container">
+
+    <div class="message-banner" id="scamBanner">
+      Job scams are on the rise. Everforth Apex recruiters never ask for a fee or a deposit at any point in the hiring process.
+      Learn how to stay safe on the <a href="https://www.apexsystems.com/fraud-and-cybersecurity-guidelines" target="_blank" rel="noopener">Fraud and Cybersecurity</a> page.
+      <button class="close" aria-label="Dismiss">&times;</button>
+    </div>
+
+    <p class="lead">From experienced consultants to people taking their very first step, we aim to be a partner for every stage of your career.</p>
+
+    <!-- Two career paths -->
+    <div class="stacked">
+      <div class="stacked-content">
+        <div class="image-top"><img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=70" alt="Consultants collaborating on a laptop"></div>
+        <div class="content-top">
+          <h2>Consultant Careers</h2>
+          <p>Take on digital, clinical and scientific project work with clients ranging from Fortune 500 and Fortune 1000 enterprises to mid-market companies and start-ups.</p>
+          <a class="arrow-btn" href="https://www.apexsystems.com/consultant-careers" target="_blank" rel="noopener">
+            <span class="circle"><svg><use href="#arrow"/></svg></span><span class="button-text">Work with Clients</span>
+          </a>
+        </div>
+      </div>
+      <div class="stacked-content">
+        <div class="image-top"><img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1200&q=70" alt="Colleagues talking in an office"></div>
+        <div class="content-top">
+          <h2>Careers at Everforth Apex</h2>
+          <p>Join the internal team in sales, recruiting, accounting, administration, business development and more, at one of 70+ offices across the United States and Canada.</p>
+          <a class="arrow-btn" href="https://www.apexsystems.com/apex-careers" target="_blank" rel="noopener">
+            <span class="circle"><svg><use href="#arrow"/></svg></span><span class="button-text">Work for Everforth Apex</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= Job openings ================= -->
+    <section class="section" id="jobs">
+      <div class="section-head">
+        <svg class="three-lines" aria-hidden="true"><use href="#lines"/></svg>
+        <h2>Job Openings</h2>
+        <p>A snapshot of roles listed on the Everforth Apex job search on September 29, 2026.</p>
+      </div>
+
+      <div class="search-band">
+        <div class="kw">
+          <label for="kw">Keyword</label>
+          <div class="field-wrap">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <input id="kw" type="search" placeholder="Keyword" autocomplete="off">
+          </div>
+        </div>
+        <div>
+          <label for="loc">Location</label>
+          <div class="field-wrap">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="9.5" r="2.5" stroke="currentColor" stroke-width="2"/></svg>
+            <select id="loc"><option value="">All locations</option></select>
+          </div>
+        </div>
+        <div>
+          <label for="cat">Field</label>
+          <div class="field-wrap">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2" stroke="currentColor" stroke-width="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2" stroke="currentColor" stroke-width="2"/></svg>
+            <select id="cat">
+              <option value="">All fields</option>
+              <option value="tech">Software &amp; Engineering</option>
+              <option value="data">Data &amp; Analytics</option>
+              <option value="pm">Project Management</option>
+              <option value="infra">Data Center &amp; Cloud</option>
+              <option value="health">Healthcare</option>
+              <option value="biz">Business &amp; HR</option>
+            </select>
+          </div>
+        </div>
+        <button class="clear" type="button" id="clear">Clear</button>
+      </div>
+
+      <div class="results-wrap">
+        <h3>Everforth Apex Job Search Results</h3>
+        <p class="results-meta" id="count" aria-live="polite"></p>
+        <p class="stale" id="stale"></p>
+        <table class="results">
+          <thead><tr><th>Job Title</th><th>City</th><th>State</th><th>Date Posted</th><th><span style="position:absolute;left:-9999px">Details</span></th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+        <p class="empty" id="empty">No roles in this snapshot match your filters.</p>
+        <div class="results-foot">
+          <div class="pager" aria-label="Pages">
+            <span class="current">1</span>
+            <a href="https://www.apexsystems.com/search-results-usa?page=1" target="_blank" rel="noopener">2</a>
+            <a href="https://www.apexsystems.com/search-results-usa?page=2" target="_blank" rel="noopener">3</a>
+            <a href="https://www.apexsystems.com/search-results-usa" target="_blank" rel="noopener" aria-label="Next">&rsaquo;</a>
+          </div>
+          <a class="arrow-btn" href="https://www.apexsystems.com/search-results-usa" target="_blank" rel="noopener">
+            <span class="circle"><svg><use href="#arrow"/></svg></span><span class="button-text">Search All Jobs</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Benefits ================= -->
+    <section class="section" id="benefits">
+      <div class="section-head">
+        <svg class="three-lines" aria-hidden="true"><use href="#lines"/></svg>
+        <h2>Benefits</h2>
+        <p>Competitive insurance and retirement savings, disability coverage, career training, lifestyle discounts, perks and more.</p>
+      </div>
+      <div class="benefits">
+        <div class="benefit">
+          <h3>Insurance &amp; Retirement Savings</h3>
+          <ul>
+            <li>Health insurance</li>
+            <li>Vision insurance</li>
+            <li>Dental insurance</li>
+            <li>Life insurance</li>
+            <li>401(k) retirement plan</li>
+            <li>Registered Retirement Plan (full-time, Canada)</li>
+          </ul>
+        </div>
+        <div class="benefit">
+          <h3>Disability Coverage</h3>
+          <ul>
+            <li>Short-term disability</li>
+            <li>Long-term disability</li>
+            <li>Critical illness</li>
+            <li>Accident insurance</li>
+          </ul>
+        </div>
+        <div class="benefit">
+          <h3>Career Training, Discounts &amp; Perks</h3>
+          <ul>
+            <li>Toolbox Talks career webinars</li>
+            <li>Training discounts &amp; development programs</li>
+            <li>Travel, retail, event &amp; wireless discounts</li>
+            <li>Referral bonus program</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Career resources ================= -->
+    <section class="section" id="resources">
+      <div class="section-head">
+        <svg class="three-lines" aria-hidden="true"><use href="#lines"/></svg>
+        <h2>Career Resources</h2>
+      </div>
+      <div class="resources">
+        <a class="arrow-btn" href="https://www.apexsystems.com/careers/career-resources" target="_blank" rel="noopener"><span class="circle"><svg><use href="#arrow"/></svg></span><span class="button-text">Career Resources</span></a>
+        <a class="arrow-btn" href="https://www.apexsystems.com/careers/webinars-and-workshops" target="_blank" rel="noopener"><span class="circle"><svg><use href="#arrow"/></svg></span><span class="button-text">Webinars &amp; Workshops</span></a>
+        <a class="arrow-btn" href="https://www.apexsystems.com/careers/faqs" target="_blank" rel="noopener"><span class="circle"><svg><use href="#arrow"/></svg></span><span class="button-text">Career FAQs</span></a>
+        <a class="arrow-btn" href="https://www.apexsystems.com/apex-veteran-redeployment" target="_blank" rel="noopener"><span class="circle"><svg><use href="#arrow"/></svg></span><span class="button-text">Veteran Redeployment</span></a>
+        <a class="arrow-btn" href="https://www.apexsystems.com/apex-careers/internal-benefits" target="_blank" rel="noopener"><span class="circle"><svg><use href="#arrow"/></svg></span><span class="button-text">Internal Benefits</span></a>
+        <a class="arrow-btn" href="https://www.apexsystems.com/locations" target="_blank" rel="noopener"><span class="circle"><svg><use href="#arrow"/></svg></span><span class="button-text">Office Locations</span></a>
+        <a class="arrow-btn" href="https://www.apexsystems.com/careers-europe" target="_blank" rel="noopener"><span class="circle"><svg><use href="#arrow"/></svg></span><span class="button-text">Careers in Europe</span></a>
+        <a class="arrow-btn" href="https://www.apexsystems.com/careers/careers-india" target="_blank" rel="noopener"><span class="circle"><svg><use href="#arrow"/></svg></span><span class="button-text">Careers in India</span></a>
+        <a class="arrow-btn" href="https://www.apexsystems.com/apex-careers/careers-mexico" target="_blank" rel="noopener"><span class="circle"><svg><use href="#arrow"/></svg></span><span class="button-text">Careers in Mexico</span></a>
+      </div>
+    </section>
+
+    <!-- ================= Testimonial ================= -->
+    <div class="testimonial-section">
+      <div class="testimonial">
+        <div class="testimonial-heading">WORKING WITH EVERFORTH APEX</div>
+        <blockquote>&ldquo;Always going above and beyond to find talented candidates.&rdquo;</blockquote>
+        <div class="attribution">
+          <svg class="three-lines" aria-hidden="true"><use href="#lines"/></svg>
+          Utility Provider
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= Full-width promo ================= -->
+    <a class="promo" href="https://www.apexsystems.com/apex-careers" target="_blank" rel="noopener">
+      <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=2000&q=70" alt="">
+      <div class="promo-content">
+        <div class="promo-headline">Discover Your <span class="attention">Value</span></div>
+        <div class="promo-sub">Explore careers on the internal Everforth Apex team</div>
+      </div>
+    </a>
+  </div>
+</main>
+
+<!-- ================= Footer ================= -->
+<footer class="site">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="footer-brand" href="https://www.apexsystems.com/" target="_blank" rel="noopener">
+          <svg aria-hidden="true"><use href="#mark"/></svg>
+          <span class="name"><b>Everforth</b><i>Apex Systems</i></span>
+        </a>
+        <p class="fine slate">Everforth Apex Systems is part of the Commercial Segment of Everforth, Inc. (NYSE: EFOR).</p>
+        <h4>Corporate Office</h4>
+        <address>4400 Cox Road<br>Suite 200<br>Glen Allen, Virginia 23060</address>
+        <div class="social">
+          <a href="https://www.linkedin.com/company/apex-systems" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.1c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V21h-4z"/></svg></a>
+          <a href="https://www.facebook.com/ApexSystemsInc" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 8.5V6.8c0-.8.2-1.3 1.4-1.3H17V2.3c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2H7.5V12h2.8v9.8H14V12h2.8l.4-3.5Z"/></svg></a>
+          <a href="https://x.com/apexsystems" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.4L5.3 21H2.2l7.2-8.3L1.8 3h6.4l4.4 5.8L17.8 3Zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5Z"/></svg></a>
+          <a href="https://www.youtube.com/channel/UC13Pn7SciLJFqZkmhJWAdQw" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8ZM9.8 15.1V8.9l5.4 3.1-5.4 3.1Z"/></svg></a>
+          <a href="https://www.instagram.com/apexsystems" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-menus">
+        <div>
+          <h5>ABOUT</h5>
+          <a href="https://www.apexsystems.com/what-we-do" target="_blank" rel="noopener">What We Do</a>
+          <a href="https://www.apexsystems.com/industries" target="_blank" rel="noopener">Industries</a>
+          <a href="https://www.apexsystems.com/insights" target="_blank" rel="noopener">Insights</a>
+          <a href="https://www.apexsystems.com/contact-us" target="_blank" rel="noopener">Contact Us</a>
+        </div>
+        <div>
+          <h5>CAREERS</h5>
+          <a href="https://www.apexsystems.com/consultant-careers" target="_blank" rel="noopener">Consultant Careers</a>
+          <a href="https://www.apexsystems.com/apex-careers" target="_blank" rel="noopener">Careers at Everforth Apex</a>
+          <a href="https://www.apexsystems.com/careers/career-resources" target="_blank" rel="noopener">Career Resources</a>
+          <a href="https://www.apexsystems.com/myapex" target="_blank" rel="noopener">Current Consultants</a>
+        </div>
+        <div>
+          <h5>MORE</h5>
+          <a href="https://www.apexsystems.com/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>
+          <a href="https://www.apexsystems.com/fraud-and-cybersecurity-guidelines" target="_blank" rel="noopener">Fraud &amp; Cybersecurity</a>
+          <a href="https://www.apexsystems.com/careers" target="_blank" rel="noopener">Current Careers Page</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="eeo">
+      Everforth Apex is an equal opportunity employer and does not discriminate on the basis of any characteristic protected by law. Qualified applicants with criminal histories are considered in line with applicable law. If you need an accommodation to search or apply for a position, please use the contact details on the official website.
+      <div class="credit">Independent replica page, not operated by Everforth Apex. Content sourced from apexsystems.com on Sep 29, 2026. Photos: Unsplash.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Snapshot of page 1 of https://www.apexsystems.com/search-results-usa (Sep 29, 2026)
+  const JOBS = [
+    ["Administrative Coordinator", "Portland", "OR", "3053980_usa/administrative-coordinator", "biz"],
+    ["Software Engineer – Front-End Developer", "Albuquerque", "NM", "3053982_usa/software-engineer--front-end-developer", "tech"],
+    ["US|IT Project Manager", "Tampa", "FL", "3053928_usa/usit-project-manager", "pm"],
+    ["Data Entry", "Richmond", "VA", "3053975_usa/data-entry", "data"],
+    ["Software Engineer - Data Systems | Rocky Program", "Albuquerque", "NM", "3053977_usa/software-engineer---data-systems--rocky-program", "tech"],
+    ["Senior Software Engineer | Rocky Program", "Albuquerque", "NM", "3053968_usa/senior-software-engineer--rocky-program", "tech"],
+    ["Software Test & Verification Engineer", "Albuquerque", "NM", "3053974_usa/software-test--verification-engineer", "tech"],
+    ["Risk Analyst", "Columbus", "OH", "3053464_usa/risk-analyst", "biz"],
+    ["Data Center Server Support Technician", "Marietta", "GA", "3047859_usa/data-center-server-support-technician", "infra"],
+    ["Data Center Technician - Data Center Technician I", "Ridgeland", "MS", "3053816_usa/data-center-technician---data-center-technician-i", "infra"],
+    ["Data Center Technician - Data Center Technician I", "Ridgeland", "MS", "3053815_usa/data-center-technician---data-center-technician-i", "infra"],
+    ["Senior Project Manager – Business Readiness & Platform Migration", "Irving", "TX", "3053370_usa/senior-project-manager--business-readiness--platform-migration", "pm"],
+    ["HR Generalist", "Des Peres", "MO", "3053953_usa/hr-generalist", "biz"],
+    ["Java Developer", "Charlotte", "NC", "3053952_usa/java-developer", "tech"],
+    ["Data Quality Analyst", "Pasadena", "CA", "3053533_usa/data-quality-analyst", "data"],
+    ["Compliance Specialist", "Fort Mill", "SC", "3053788_usa/compliance-specialist", "biz"],
+    ["Pharmacy Channel Consultant", "Danville", "PA", "3048215_usa/pharmacy-channel-consultant", "health"],
+    ["HRIS Analyst", "Louisville", "KY", "3053950_usa/hris-analyst", "biz"],
+    ["Oracle Cerner Migration Analyst RadNet", "St. Louis", "MO", "3050989_usa/oracle-cerner-migration-analyst-radnet", "health"],
+    ["Outpatient Coder", "Atlanta", "GA", "3050963_usa/outpatient-coder", "health"],
+    ["Prior Authorization Analyst", "St. Louis", "MO", "3049516_usa/prior-authorization-analyst", "health"],
+    ["Senior Project Manager, Migration", "Boston", "MA", "3053933_usa/senior-project-manager-migration", "pm"],
+    ["Enterprise AI Architect (Microsoft Copilot & Claude)", "Not listed", "IA", "3053902_usa/enterprise-ai-architect-microsoft-copilot--claude", "tech"],
+    ["Architecture Design & Engineering Coordinator", "Woonsocket", "RI", "3046167_usa/architecture-design--engineering-coordinator", "pm"],
+    ["Cloud Platform Engineer", "Toronto", "ON", "3053946_usa/cloud-platform-engineer", "infra"]
+  ];
+  // Real posting date from the official listings; the labels below are computed from the viewer's clock.
+  const POSTED = new Date(2026, 8, 29);
+  const BASE = "https://www.apexsystems.com/job/";
+
+  const startOfToday = new Date(); startOfToday.setHours(0, 0, 0, 0);
+  const daysAgo = Math.max(0, Math.round((startOfToday - POSTED) / 86400000));
+  const agoLabel = daysAgo === 0 ? "Today" : daysAgo === 1 ? "Yesterday" : `${daysAgo} days ago`;
+  const postedText = POSTED.toLocaleDateString("en-US");
+  const postedLong = POSTED.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+
+  if (daysAgo >= 7) {
+    const stale = document.getElementById("stale");
+    stale.innerHTML = `These listings were captured on ${postedLong} (${agoLabel.toLowerCase()}) and some may have closed. ` +
+      `<a href="https://www.apexsystems.com/search-results-usa" target="_blank" rel="noopener">See current openings</a>`;
+    stale.style.display = "block";
+  }
+
+  const rows = document.getElementById("rows");
+  const kw = document.getElementById("kw");
+  const loc = document.getElementById("loc");
+  const cat = document.getElementById("cat");
+  const count = document.getElementById("count");
+  const empty = document.getElementById("empty");
+  const esc = s => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+  [...new Set(JOBS.map(j => j[2]))].sort().forEach(st => {
+    const o = document.createElement("option");
+    o.value = st; o.textContent = st;
+    loc.appendChild(o);
+  });
+
+  function render() {
+    const q = kw.value.trim().toLowerCase();
+    const list = JOBS.filter(([title, city, st, , c]) =>
+      (!q || (title + " " + city + " " + st).toLowerCase().includes(q)) &&
+      (!loc.value || st === loc.value) &&
+      (!cat.value || c === cat.value)
+    );
+    rows.innerHTML = list.map(([title, city, st, path]) => `
+      <tr>
+        <td class="title"><a href="${BASE + path}" target="_blank" rel="noopener">${esc(title)}</a></td>
+        <td class="city">${esc(city)}</td>
+        <td class="state">${esc(st)}</td>
+        <td class="date">${postedText}<span class="ago">${agoLabel}</span></td>
+        <td class="more"><a href="${BASE + path}" target="_blank" rel="noopener"><span class="dot"><svg><use href="#arrow"/></svg></span>View more</a></td>
+      </tr>`).join("");
+    count.textContent = `Showing ${list.length} of ${JOBS.length} openings`;
+    empty.style.display = list.length ? "none" : "block";
+  }
+  [kw, loc, cat].forEach(el => el.addEventListener("input", render));
+  document.getElementById("clear").addEventListener("click", () => { kw.value = ""; loc.value = ""; cat.value = ""; render(); });
+  render();
+
+  // Scam banner close
+  document.querySelector("#scamBanner .close").addEventListener("click", () => document.getElementById("scamBanner").remove());
+
+  // Header: transparent over hero, white once scrolled or menu open
+  const siteTop = document.getElementById("siteTop");
+  const nav = document.getElementById("mainnav");
+  const burger = document.querySelector(".burger");
+  const setSolid = () => siteTop.classList.toggle("solid", scrollY > 30 || nav.classList.contains("open"));
+  addEventListener("scroll", setSolid, { passive: true });
+  burger.addEventListener("click", () => {
+    const open = nav.classList.toggle("open");
+    burger.setAttribute("aria-expanded", open);
+    setSolid();
+  });
+  setSolid();
+</script>
+</body>
+</html>
